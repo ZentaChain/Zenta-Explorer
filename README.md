@@ -1,4 +1,4 @@
-## :computer: Zenta - Explorer (ZENTA) :computer:
+## :computer: Zenta  Explorer (ZENTA) :computer:
 
 ##### A explorer for Zenta Token
 
