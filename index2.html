@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Zenta Explorer</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Styles -->
+    <style>
+      body {
+        padding-top: 20px;
+      }
+      h1 {
+        margin: 20px 0px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center" >
+          <img src="img/picture.png">
+          <h1>Zenta Explorer</h1>
+          <h3> Latest 40 blocks </h3>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">TxHash</th>
+                <th scope="col">Block</th>
+                <th scope="col">Timestamp</th>
+                <th scope="col">Gas Used</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+<!-- Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<!-- Web3 -->
+    <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
+    <script>
+      var provider = 'https://mainnet.infura.io/v3/'; //Your Infura Endpoint
+      var web3Provider = new Web3.providers.HttpProvider(provider);
+      var web3 = new Web3(web3Provider);
+      var latestBlock = web3.eth.blockNumber;
+// List blocks in table
+      for (var i = 0; i < 20; i++) {
+        var block = web3.eth.getBlock(latestBlock - i);
+        var number = block.number;
+        var hash = block.hash;
+        var time = block.timestamp;
+        var gas = block.gasUsed;
+        //var sender = web3.eth.getTransaction(hash.from);
+        convertTimestamp(time);
+function convertTimestamp(time) {
+            var d = new Date(time * 1000), // Convert the passed timestamp to milliseconds
+                yyyy = d.getFullYear(),
+                mm = ('0' + (d.getMonth() + 1)).slice(-2),  // Months are zero based. Add leading 0.
+                dd = ('0' + d.getDate()).slice(-2),         // Add leading 0.
+                hh = d.getHours(),
+                h = hh,
+                min = ('0' + d.getMinutes()).slice(-2),     // Add leading 0.
+                ampm = 'AM',
+                time;
+if (hh > 12) {
+                h = hh - 12;
+                ampm = 'PM';
+            } else if (hh === 12) {
+                h = 12;
+                ampm = 'PM';
+            } else if (hh == 0) {
+                h = 12;
+            }
+// ie: 2019-04-13, 3:00 PM
+            time1 = yyyy + '-' + mm + '-' + dd + ', ' + h + ':' + min + ' ' + ampm;
+            return time1;
+        }
+        $('tbody').append("<tr><td>" + hash + "</td><td>" + number + "</td><td>" + time1 + "</td><td>" + gas + "</tr>");
+      }
+    </script>
+  </body>
+</html>
