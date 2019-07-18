@@ -156,11 +156,6 @@
             el('#txHash').innerHTML = transaction.hash;
             el('#txFrom').innerHTML = transaction.from;
             el('#txTo').innerHTML = transaction.to;
-            el('#txValue').innerHTML = Eth.fromWei(transaction.value, 'ether');
-            el('#txGas').innerHTML = transaction.gas.toString(10);
-            el('#txGasPrice').innerHTML = Eth.fromWei(transaction.gasPrice, 'ether');
-            el('#txGasUsed').innerHTML = Eth.fromWei(receipt.gasUsed, 'ether');
-            el('#txCost').innerHTML = Eth.fromWei(receipt.cumulativeGasUsed, 'ether');
             el('#txCumulativeGasUsed').innerHTML = receipt.cumulativeGasUsed.toString(10);
             el('#txNonce').innerHTML = transaction.nonce.toString(10);
           });
