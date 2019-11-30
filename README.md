@@ -1,5 +1,5 @@
-### Zenta Token Explorer (ZENTA)
+### Zenta Network Explorer
 
-##### *Explorer will go public after Zenta is Launched.*
+##### *Explorer will go public after Zenta testnet is Launched.*
 
 ##### *This project is under active development, there may be breaking changes.*
