@@ -1,4 +1,4 @@
-### Zenta Network Explorer
+### Zentanetwork Explorer
 
 ##### Explorer will be live during the launch of Zenta pre-testnet.
 ----
